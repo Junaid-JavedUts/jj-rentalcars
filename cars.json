@@ -1,0 +1,77 @@
+{
+  "cars": [
+    {
+      "vin": "ABC123",
+      "brand": "Toyota",
+      "carModel": "Corolla",
+      "yearOfManufacture": 2021,
+      "carType": "Sedan",
+      "fuelType": "Petrol",
+      "pricePerDay": 60,
+      "description": "Comfortable and fuel-efficient sedan.",
+      "available": true,
+      "image": "images/corolla.jpg"
+    },
+    {
+      "vin": "XYZ789",
+      "brand": "Honda",
+      "carModel": "Civic",
+      "yearOfManufacture": 2022,
+      "carType": "Sedan",
+      "fuelType": "Hybrid",
+      "pricePerDay": 70,
+      "description": "Sporty look with eco-friendly performance.",
+      "available": false,
+      "image": "images/civic.jpg"
+    },
+    {
+  "vin": "BMW001",
+  "brand": "BMW",
+  "carModel": "X5",
+  "yearOfManufacture": 2023,
+  "carType": "SUV",
+  "fuelType": "Diesel",
+  "pricePerDay": 120,
+  "description": "Luxury SUV with premium comfort and space.",
+  "available": true,
+  "image": "images/bmw-x5.jpg"
+},
+{
+  "vin": "AUDI002",
+  "brand": "Audi",
+  "carModel": "A4",
+  "yearOfManufacture": 2021,
+  "carType": "Sedan",
+  "fuelType": "Petrol",
+  "pricePerDay": 95,
+  "description": "Stylish and smooth driving experience.",
+  "available": true,
+  "image": "images/audi-a4.jpg"
+},
+{
+  "vin": "TESLA003",
+  "brand": "Tesla",
+  "carModel": "Model 3",
+  "yearOfManufacture": 2022,
+  "carType": "Sedan",
+  "fuelType": "Electric",
+  "pricePerDay": 150,
+  "description": "Electric performance with cutting-edge tech.",
+  "available": true,
+  "image": "images/tesla-model3.jpg"
+},
+{
+  "vin": "FORD004",
+  "brand": "Ford",
+  "carModel": "Ranger",
+  "yearOfManufacture": 2020,
+  "carType": "Truck",
+  "fuelType": "Diesel",
+  "pricePerDay": 85,
+  "description": "Reliable pickup for all terrain and tasks.",
+  "available": false,
+  "image": "images/ford-ranger.jpg"
+}
+
+  ]
+}

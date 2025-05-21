@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Reservations - JJ RentalCars</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+  <a href="index.html">
+    <img src="images/logo.png" alt="JJ RentalCars Logo" class="logo">
+  </a>
+</header>
+
+
+
+  <h1>All Reservations</h1>
+  <div id="reservationTable"></div>
+
+  <script>
+    let orders;
+    try {
+      orders = JSON.parse(localStorage.getItem("orders"));
+    } catch (e) {
+      document.getElementById("reservationTable").innerHTML =
+        "<p class='empty'>❌ Error: Invalid data format in localStorage.<br>Clear it with <code>localStorage.removeItem('orders')</code></p>";
+    }
+
+    if (orders && Array.isArray(orders) && orders.length > 0) {
+      const table = `
+        <table>
+          <tr>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Car VIN</th>
+            <th>Pickup Date</th>
+            <th>Return Date</th>
+            <th>Total Cost</th>
+          </tr>
+          ${orders.map(order => `
+            <tr>
+              <td>${order.customerName}</td>
+              <td>${order.customerPhone}</td>
+              <td>${order.carVin}</td>
+              <td>${order.pickupDate}</td>
+              <td>${order.returnDate}</td>
+              <td>$${order.totalCost}</td>
+            </tr>
+          `).join("")}
+        </table>`;
+      document.getElementById("reservationTable").innerHTML = table;
+    } else if (!orders) {
+      document.getElementById("reservationTable").innerHTML = "<p class='empty'>No reservations found.</p>";
+    }
+  </script>
+
+</body>
+</html>
