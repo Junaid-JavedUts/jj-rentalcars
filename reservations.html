@@ -4,185 +4,44 @@
   <meta charset="UTF-8">
   <title>Car Reservation</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    input.valid { border: 2px solid green; }
-    input.invalid { border: 2px solid red; }
-    .form-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .cancel-button {
-      background-color: #999;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .cancel-button:hover {
-      background-color: #777;
-    }
-  </style>
 </head>
 <body>
   <header>
-    <a href="index.html">
-      <img src="images/logo.png" alt="JJ RentalCars Logo" class="logo">
-    </a>
+    <div class="header-container">
+      <a href="index.html">
+        <img src="images/logo.png" alt="JJ RentalCars Logo" class="logo">
+      </a>
+      <h1 class="site-title">RESERVATION</h1>
+      <div style="width:120px"></div>
+    </div>
   </header>
 
   <main>
     <div class="reservation-container">
       <section id="car-details" class="car-card"></section>
-      <section id="reservation-form"></section>
+      <section id="reservation-form">
+        <h2>Reservation Info</h2>
+        <form id="bookingForm">
+          <label>Full Name: <input type="text" id="customerName" required></label><br><br>
+          <label>Phone Number: <input type="tel" id="customerPhone" required></label><br><br>
+          <label>Email Address: <input type="email" id="customerEmail" required></label><br><br>
+          <label>Driver’s License Number: <input type="text" id="licenseNumber" required></label><br><br>
+          <label>Pickup Date: <input type="date" id="pickupDate" required></label><br><br>
+          <label>Return Date: <input type="date" id="returnDate" required></label><br><br>
+          <p><strong>Total Cost:</strong> $<span id="totalCost">0</span></p><br>
+          <div class="form-buttons">
+            <button type="submit" class="rent-button" id="submitButton">Confirm Reservation</button>
+            <button type="button" class="cancel-button" id="cancelButton">Cancel</button>
+          </div>
+        </form>
+      </section>
     </div>
   </main>
 
-<script>
-const car = JSON.parse(localStorage.getItem("selectedCar"));
+  <footer>
+    <p>Rana Junaid Javed - 25109618 &nbsp; | &nbsp; All Rights Reserved 2025</p>
+  </footer>
 
-const carDetails = document.getElementById("car-details");
-const reservationForm = document.getElementById("reservation-form");
-
-if (!car) {
-  carDetails.innerHTML = "<h2>No car selected. Please choose a car from the homepage.</h2>";
-  reservationForm.style.display = "none";
-} else {
-  carDetails.innerHTML = `
-    <img src="${car.image}" alt="${car.carModel}">
-    <h3>${car.brand} ${car.carModel} (${car.yearOfManufacture})</h3>
-    <p><strong>Fuel:</strong> ${car.fuelType}</p>
-    <p><strong>Type:</strong> ${car.carType}</p>
-    <p><strong>Price per day:</strong> $${car.pricePerDay}</p>
-    <p>${car.description}</p>
-  `;
-
-  reservationForm.innerHTML = `
-    <h2>Reservation Info</h2>
-    <form id="bookingForm">
-      <label>Full Name: <input type="text" id="customerName" required></label><br><br>
-      <label>Phone Number: <input type="tel" id="customerPhone" required></label><br><br>
-      <label>Email Address: <input type="email" id="customerEmail" required></label><br><br>
-      <label>Driver’s License Number: <input type="text" id="licenseNumber" required></label><br><br>
-      <label>Pickup Date: <input type="date" id="pickupDate" required></label><br><br>
-      <label>Return Date: <input type="date" id="returnDate" required></label><br><br>
-      <p><strong>Total Cost:</strong> $<span id="totalCost">0</span></p><br>
-      <div class="form-buttons">
-        <button type="submit" class="rent-button" id="submitButton">Confirm Reservation</button>
-        <button type="button" class="cancel-button" id="cancelButton">Cancel</button>
-      </div>
-    </form>
-  `;
-
-  const form = document.getElementById("bookingForm");
-  const totalCostEl = document.getElementById("totalCost");
-  const submitBtn = document.getElementById("submitButton");
-  const cancelBtn = document.getElementById("cancelButton");
-
-  const nameEl = document.getElementById("customerName");
-  const phoneEl = document.getElementById("customerPhone");
-  const emailEl = document.getElementById("customerEmail");
-  const licenseEl = document.getElementById("licenseNumber");
-  const pickupEl = document.getElementById("pickupDate");
-  const returnEl = document.getElementById("returnDate");
-
-  const saved = JSON.parse(localStorage.getItem("formDraft"));
-  if (saved) {
-    nameEl.value = saved.customerName || "";
-    phoneEl.value = saved.customerPhone || "";
-    emailEl.value = saved.customerEmail || "";
-    licenseEl.value = saved.licenseNumber || "";
-    pickupEl.value = saved.pickupDate || "";
-    returnEl.value = saved.returnDate || "";
-  }
-
-  const validateField = (input, isValid) => {
-    input.classList.remove("valid", "invalid");
-    input.classList.add(isValid ? "valid" : "invalid");
-  };
-
-  const validateInput = () => {
-    const name = nameEl.value.trim();
-    const phone = phoneEl.value.trim();
-    const email = emailEl.value.trim();
-    const license = licenseEl.value.trim();
-    const pickup = pickupEl.value;
-    const ret = returnEl.value;
-
-    const nameValid = /^[a-zA-Z\s]{2,}$/.test(name);
-    const phoneValid = /^\d{10,15}$/.test(phone);
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const licenseValid = license.length > 0;
-    const dateValid = pickup && ret && new Date(ret) > new Date(pickup);
-
-    validateField(nameEl, nameValid);
-    validateField(phoneEl, phoneValid);
-    validateField(emailEl, emailValid);
-    validateField(licenseEl, licenseValid);
-    validateField(pickupEl, !!pickup);
-    validateField(returnEl, dateValid);
-
-    submitBtn.disabled = !(nameValid && phoneValid && emailValid && licenseValid && dateValid);
-  };
-
-  form.addEventListener("input", () => {
-    validateInput();
-    const pickup = new Date(pickupEl.value);
-    const ret = new Date(returnEl.value);
-    const days = Math.ceil((ret - pickup) / (1000 * 60 * 60 * 24));
-    const cost = days > 0 ? car.pricePerDay * days : 0;
-    totalCostEl.textContent = cost;
-  });
-
-  cancelBtn.addEventListener("click", () => {
-    form.reset();
-    document.querySelectorAll("input").forEach(input => {
-      input.classList.remove("valid", "invalid");
-    });
-    totalCostEl.textContent = "0";
-    localStorage.removeItem("formDraft");
-    validateInput();
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const newOrder = {
-      carVin: car.vin,
-      customerName: nameEl.value.trim(),
-      customerPhone: phoneEl.value.trim(),
-      customerEmail: emailEl.value.trim(),
-      licenseNumber: licenseEl.value.trim(),
-      pickupDate: pickupEl.value,
-      returnDate: returnEl.value,
-      totalCost: totalCostEl.textContent
-    };
-
-    const existing = JSON.parse(localStorage.getItem("orders")) || [];
-    existing.push(newOrder);
-    localStorage.setItem("orders", JSON.stringify(existing));
-
-    localStorage.removeItem("formDraft");
-    alert("✅ Reservation confirmed!");
-    localStorage.removeItem("selectedCar");
-    window.location.href = "index.html";
-  });
-
-  window.addEventListener("beforeunload", () => {
-    const draft = {
-      customerName: nameEl.value.trim(),
-      customerPhone: phoneEl.value.trim(),
-      customerEmail: emailEl.value.trim(),
-      licenseNumber: licenseEl.value.trim(),
-      pickupDate: pickupEl.value,
-      returnDate: returnEl.value
-    };
-    localStorage.setItem("formDraft", JSON.stringify(draft));
-  });
-
-  validateInput();
-}
-</script>
+  <script src="script.js"></script>
 </body>
 </html>

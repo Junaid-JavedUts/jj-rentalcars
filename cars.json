@@ -71,7 +71,80 @@
   "description": "Reliable pickup for all terrain and tasks.",
   "available": false,
   "image": "images/ford-ranger.jpg"
+},
+{
+  "vin": "HYU005",
+  "brand": "Hyundai",
+  "carModel": "Tucson",
+  "yearOfManufacture": 2022,
+  "carType": "SUV",
+  "fuelType": "Petrol",
+  "pricePerDay": 90,
+  "description": "Compact SUV with smart features and comfort.",
+  "available": true,
+  "image": "images/hyundai-tucson.jpg"
+},
+{
+  "vin": "KIA006",
+  "brand": "Kia",
+  "carModel": "Sportage",
+  "yearOfManufacture": 2021,
+  "carType": "SUV",
+  "fuelType": "Hybrid",
+  "pricePerDay": 85,
+  "description": "Stylish SUV with a blend of efficiency and power.",
+  "available": true,
+  "image": "images/kia-sportage.jpg"
+},
+{
+  "vin": "MER007",
+  "brand": "Mercedes",
+  "carModel": "C-Class",
+  "yearOfManufacture": 2023,
+  "carType": "Sedan",
+  "fuelType": "Petrol",
+  "pricePerDay": 130,
+  "description": "Premium sedan with top-tier luxury and performance.",
+  "available": true,
+  "image": "images/mercedes-cclass.jpg"
+},
+{
+  "vin": "NIS008",
+  "brand": "Nissan",
+  "carModel": "Altima",
+  "yearOfManufacture": 2020,
+  "carType": "Sedan",
+  "fuelType": "Petrol",
+  "pricePerDay": 65,
+  "description": "Reliable sedan with great fuel economy.",
+  "available": true,
+  "image": "images/nissan-altima.jpg"
+},
+{
+  "vin": "CHE009",
+  "brand": "Chevrolet",
+  "carModel": "Camaro",
+  "yearOfManufacture": 2022,
+  "carType": "Coupe",
+  "fuelType": "Petrol",
+  "pricePerDay": 110,
+  "description": "Iconic muscle car with thrilling performance.",
+  "available": false,
+  "image": "images/chevrolet-camaro.jpg"
+},
+{
+  "vin": "JEEP010",
+  "brand": "Jeep",
+  "carModel": "Wrangler",
+  "yearOfManufacture": 2021,
+  "carType": "SUV",
+  "fuelType": "Diesel",
+  "pricePerDay": 100,
+  "description": "Off-road beast built for rugged adventures.",
+  "available": true,
+  "image": "images/jeep-wrangler.jpg"
 }
+
 
   ]
 }
